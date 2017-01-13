@@ -35,7 +35,7 @@ public class AddressJsonSerializationTest {
         assertThat(publicResult, not(containsString("221 B")));
 
         String internalResult = mapper
-                .writerWithView(Views.Internal.class)
+                .writerWithView(Views.Private.class)
                 .writeValueAsString(address);
 
         assertThat(internalResult, containsString("London"));
@@ -62,7 +62,7 @@ public class AddressJsonSerializationTest {
 
         ObjectMapper mapper = new ObjectMapper();
         Address address = (Address) mapper
-                .readerWithView(Views.Internal.class).withType(Address.class).readValue(json);
+                .readerWithView(Views.Private.class).withType(Address.class).readValue(json);
 
         assertEquals("London", address.getCity());
         assertEquals("Baker Street", address.getStreet());

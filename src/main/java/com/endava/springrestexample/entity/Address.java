@@ -7,20 +7,22 @@ import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Address {
+public class Address implements Serializable {
 
     @Id @GeneratedValue
+    @JsonView(Views.Private.class)
     private Integer id;
 
     @JsonView(Views.Public.class)
     private String city;
 
-    @JsonView(Views.Internal.class)
+    @JsonView(Views.Private.class)
     private String street;
 
-    @JsonView(Views.Internal.class)
+    @JsonView(Views.Private.class)
     private String number;
 
     public Address() {

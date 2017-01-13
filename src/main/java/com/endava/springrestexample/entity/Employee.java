@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class Employee implements Serializable {
 
     @Id @GeneratedValue
+    @JsonView(Views.Private.class)
     private Integer id;
 
     @JsonView(Views.Public.class)
@@ -22,7 +23,7 @@ public class Employee implements Serializable {
     @JsonView(Views.Public.class)
     private String lastName;
 
-    @JsonView(Views.Internal.class)
+    @JsonView(Views.Private.class)
     private Address address;
 
     public Employee() {
@@ -33,7 +34,16 @@ public class Employee implements Serializable {
         this.lastName = lastName;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public Integer getId() {
+
         return id;
     }
 
