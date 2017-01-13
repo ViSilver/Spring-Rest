@@ -31,7 +31,7 @@ public class EmployeeJsonSerializationTest {
     }
 
     @Test
-    public void whenUsePublicJsonViewToSerialize_thenCorrect() throws JsonProcessingException {
+    public void whenUseEmployeePublicViewJsonViewToSerialize_thenCorrect() throws JsonProcessingException {
 
         Employee employee = new Employee("John", "Smith");
         employee.setAddress(address);
@@ -40,7 +40,7 @@ public class EmployeeJsonSerializationTest {
         mapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
 
         String result = mapper
-                .writerWithView(Views.Public.class)
+                .writerWithView(Views.EmployeePublicView.class)
                 .writeValueAsString(employee);
 
         assertThat(result, containsString("John"));
@@ -50,7 +50,30 @@ public class EmployeeJsonSerializationTest {
     }
 
     @Test
-    public void whenUseInternalJsonViewToSerialize_thenCorrect() throws JsonProcessingException {
+    public void whenUseEmployeePrivateViewJsonViewToSerialize_thenCorrect() throws JsonProcessingException {
+
+        Employee employee = new Employee("John", "Smith");
+        employee.setAddress(address);
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
+
+        String result = mapper
+                .writerWithView(Views.EmployeePrivateView.class)
+                .writeValueAsString(employee);
+
+        assertThat(result, containsString("id"));
+        assertThat(result, containsString("John"));
+        assertThat(result, containsString("Smith"));
+        assertThat(result, containsString("address"));
+        assertThat(result, containsString("London"));
+        assertThat(result, not(containsString("Baker Street")));
+        assertThat(result, not(containsString("221 B")));
+    }
+
+    @Test
+    public void whenUseAllPrivateViewJsonViewToSerialize_thenCorrect() throws JsonProcessingException {
 
         Employee employee = new Employee("John", "Smith");
         employee.setAddress(address);
@@ -59,7 +82,7 @@ public class EmployeeJsonSerializationTest {
         mapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
 
         String result = mapper
-                .writerWithView(Views.Private.class)
+                .writerWithView(Views.AllPrivateView.class)
                 .writeValueAsString(employee);
 
         assertThat(result, containsString("id"));
@@ -75,19 +98,19 @@ public class EmployeeJsonSerializationTest {
 
         ObjectMapper mapper = new ObjectMapper();
         Employee employee = mapper
-                .readerWithView(Views.Public.class).withType(Employee.class).readValue(json);
+                .readerWithView(Views.EmployeePublicView.class).withType(Employee.class).readValue(json);
 
         assertNull(employee.getAddress());
     }
 
     @Test
-    public void whenUseInternalJsonViewToDeserialize_thenCorrect() throws IOException {
+    public void whenUsePrivateJsonViewToDeserialize_thenCorrect() throws IOException {
         String json = "{\"id\": \"3\",\"firstName\": \"John\"," +
                 "\"lastName\": \"Smith\",\"address\":{\"city\": \"London\"}}";
 
         ObjectMapper mapper = new ObjectMapper();
         Employee employee = mapper
-                .readerWithView(Views.Private.class).withType(Employee.class).readValue(json);
+                .readerWithView(Views.EmployeePrivateView.class).withType(Employee.class).readValue(json);
 
         assertEquals(employee.getId().toString(), "3");
         assertEquals(employee.getFirstName(), "John");

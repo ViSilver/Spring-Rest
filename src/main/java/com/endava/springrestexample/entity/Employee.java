@@ -14,16 +14,16 @@ import java.io.Serializable;
 public class Employee implements Serializable {
 
     @Id @GeneratedValue
-    @JsonView(Views.Private.class)
+    @JsonView(Views.EmployeePrivateView.class)
     private Integer id;
 
-    @JsonView(Views.Public.class)
+    @JsonView(Views.EmployeePublicView.class)
     private String firstName;
 
-    @JsonView(Views.Public.class)
+    @JsonView(Views.EmployeePublicView.class)
     private String lastName;
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.EmployeePrivateView.class)
     private Address address;
 
     public Employee() {

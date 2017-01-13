@@ -27,7 +27,7 @@ public class AddressJsonSerializationTest {
         mapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
 
         String publicResult = mapper
-                .writerWithView(Views.Public.class)
+                .writerWithView(Views.AddressPublicView.class)
                 .writeValueAsString(address);
 
         assertThat(publicResult, containsString("London"));
@@ -35,7 +35,7 @@ public class AddressJsonSerializationTest {
         assertThat(publicResult, not(containsString("221 B")));
 
         String internalResult = mapper
-                .writerWithView(Views.Private.class)
+                .writerWithView(Views.AddressPrivateView.class)
                 .writeValueAsString(address);
 
         assertThat(internalResult, containsString("London"));
@@ -49,7 +49,7 @@ public class AddressJsonSerializationTest {
 
         ObjectMapper mapper = new ObjectMapper();
         Address address = (Address) mapper
-                .readerWithView(Views.Public.class).withType(Address.class).readValue(json);
+                .readerWithView(Views.AddressPublicView.class).withType(Address.class).readValue(json);
 
         assertEquals("London", address.getCity());
         assertNull(address.getNumber());
@@ -57,12 +57,12 @@ public class AddressJsonSerializationTest {
     }
 
     @Test
-    public void whenUseInternalJsonViewToDeserialize_thenCorrect() throws IOException {
+    public void whenUsePrivateJsonViewToDeserialize_thenCorrect() throws IOException {
         String json = "{\"city\": \"London\", \"street\": \"Baker Street\", \"number\": \"221 B\"}";
 
         ObjectMapper mapper = new ObjectMapper();
         Address address = (Address) mapper
-                .readerWithView(Views.Private.class).withType(Address.class).readValue(json);
+                .readerWithView(Views.AddressPrivateView.class).withType(Address.class).readValue(json);
 
         assertEquals("London", address.getCity());
         assertEquals("Baker Street", address.getStreet());

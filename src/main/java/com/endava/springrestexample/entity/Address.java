@@ -13,16 +13,16 @@ import java.io.Serializable;
 public class Address implements Serializable {
 
     @Id @GeneratedValue
-    @JsonView(Views.Private.class)
+    @JsonView(Views.AddressPrivateView.class)
     private Integer id;
 
-    @JsonView(Views.Public.class)
+    @JsonView(Views.AddressPublicView.class)
     private String city;
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.AddressPrivateView.class)
     private String street;
 
-    @JsonView(Views.Private.class)
+    @JsonView(Views.AddressPrivateView.class)
     private String number;
 
     public Address() {

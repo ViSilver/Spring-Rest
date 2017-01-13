@@ -1,13 +1,14 @@
 package com.endava.springrestexample.util.serialization;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 public class Views {
-    public static class Public {}
+    public interface AddressPublicView {}
 
-    public static class Private extends Public {}
+    public interface AddressPrivateView extends AddressPublicView {}
 
-    @JsonIgnoreProperties({"id", "street", "number"})
-    public static class EmployeePublicView extends Private {}
+    public interface EmployeePublicView {}
+
+    public interface EmployeePrivateView extends AddressPublicView, EmployeePublicView {}
+
+    public interface AllPrivateView extends EmployeePrivateView, AddressPrivateView {}
 }
