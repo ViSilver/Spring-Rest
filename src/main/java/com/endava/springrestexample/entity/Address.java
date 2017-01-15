@@ -7,21 +7,28 @@ import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+
 @Entity
+@XmlRootElement
 public class Address implements Serializable {
 
     @Id @GeneratedValue
     @JsonView(Views.AddressPrivateView.class)
     private Integer id;
 
+    @XmlElement
     @JsonView(Views.AddressPublicView.class)
     private String city;
 
+    @XmlElement
     @JsonView(Views.AddressPrivateView.class)
     private String street;
 
+    @XmlElement
     @JsonView(Views.AddressPrivateView.class)
     private String number;
 
@@ -32,6 +39,14 @@ public class Address implements Serializable {
         this.street = street;
         this.city = city;
         this.number = number;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStreet() {
@@ -56,5 +71,15 @@ public class Address implements Serializable {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", number='" + number + '\'' +
+                '}';
     }
 }
