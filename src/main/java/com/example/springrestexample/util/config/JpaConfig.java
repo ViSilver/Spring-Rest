@@ -48,6 +48,12 @@ public class JpaConfig {
     @Value("${hibernate.hbm2ddl.auto}")
     private String hbm2ddlAuto;
 
+    @Value("${spring.mvc.view.prefix}")
+    private String prefix;
+
+    @Value("${spring.mvc.view.suffix}")
+    private String suffix;
+
     @Bean
     public DataSource configureDataSource() {
         HikariConfig config = new HikariConfig();
