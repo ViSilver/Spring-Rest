@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     Employee findById(Integer id);

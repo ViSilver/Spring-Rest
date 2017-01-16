@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -22,8 +23,13 @@ public class EmployeeRestController {
     private AddressRepository addressRepository;
 
     @RequestMapping(value = "/{id}", produces = "application/json")
-    public Employee getEmployee() {
-        return new Employee("John", "Smith");
+    public Employee getEmployee(@PathVariable Integer id) {
+        return employeeRepository.findById(id);
+    }
+
+    @RequestMapping(value = "/employees", produces = "application/json")
+    public List<Employee> getEmployees() {
+        return employeeRepository.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
