@@ -38,8 +38,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebAppConfiguration
 public class EmployeeRestControllerTest {
 
-    private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+    private MediaType contentType;
 
     private MockMvc mockMvc;
 
@@ -73,6 +72,9 @@ public class EmployeeRestControllerTest {
 
     @Before
     public void setup() throws Exception {
+        contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
+                MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
 
         employeeRepository.deleteAll();
@@ -87,9 +89,9 @@ public class EmployeeRestControllerTest {
 
     @Test
     public void readSingleEmployee() throws Exception {
-        mockMvc.perform(get("/employee/" + userId))
+        mockMvc.perform(get("/employee/" + userId).accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id", is(employee.getId())))
                 .andExpect(jsonPath("$.firstName", is(employee.getFirstName())))
                 .andExpect(jsonPath("$.lastName", is(employee.getLastName())));

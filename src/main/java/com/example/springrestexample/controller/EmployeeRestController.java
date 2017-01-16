@@ -5,6 +5,7 @@ import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.repository.AddressRepository;
 import com.example.springrestexample.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -27,7 +28,7 @@ public class EmployeeRestController {
         return employeeRepository.findById(id);
     }
 
-    @RequestMapping(value = "/employees", produces = "application/json")
+    @RequestMapping(value = "/employees", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
