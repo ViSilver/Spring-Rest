@@ -19,7 +19,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("com.endava.springrestexample.repository")
+@EnableJpaRepositories("com.endava.springrestexample.entity")
 public class JpaConfig {
 
     @Value("${dataSource.driverClass}")

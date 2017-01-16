@@ -13,22 +13,18 @@ import java.io.Serializable;
 
 
 @Entity
-@XmlRootElement
 public class Address implements Serializable {
 
     @Id @GeneratedValue
     @JsonView(Views.AddressPrivateView.class)
     private Integer id;
 
-    @XmlElement
     @JsonView(Views.AddressPublicView.class)
     private String city;
 
-    @XmlElement
     @JsonView(Views.AddressPrivateView.class)
     private String street;
 
-    @XmlElement
     @JsonView(Views.AddressPrivateView.class)
     private String number;
 

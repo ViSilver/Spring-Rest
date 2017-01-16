@@ -7,29 +7,26 @@ import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 
 @Entity
-@XmlRootElement
 public class Employee implements Serializable {
 
     @Id @GeneratedValue
-    @XmlElement
     @JsonView(Views.EmployeePrivateView.class)
     private Integer id;
 
-    @XmlElement
     @JsonView(Views.EmployeePublicView.class)
     private String firstName;
 
-    @XmlElement
     @JsonView(Views.EmployeePublicView.class)
     private String lastName;
 
-    @XmlElement
+    @OneToOne
     @JsonView(Views.EmployeePrivateView.class)
     private Address address;
 
