@@ -16,12 +16,12 @@ import java.net.URI;
 public class EmployeeRestController {
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
-    AddressRepository addressRepository;
+    private AddressRepository addressRepository;
 
-    @RequestMapping("/{id}")
+    @RequestMapping(value = "/{id}", produces = "application/json")
     public Employee getEmployee() {
         return new Employee("John", "Smith");
     }
