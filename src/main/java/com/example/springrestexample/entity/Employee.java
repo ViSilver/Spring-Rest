@@ -1,15 +1,13 @@
-package com.endava.springrestexample.entity;
+package com.example.springrestexample.entity;
 
 
-import com.endava.springrestexample.util.serialization.Views;
+import com.example.springrestexample.util.serialization.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 

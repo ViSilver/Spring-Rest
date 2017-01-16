@@ -1,7 +1,7 @@
-package com.endava.springrestexample.main;
+package com.example.springrestexample.main;
 
 
-import com.endava.springrestexample.util.config.JpaConfig;
+import com.example.springrestexample.util.config.JpaConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

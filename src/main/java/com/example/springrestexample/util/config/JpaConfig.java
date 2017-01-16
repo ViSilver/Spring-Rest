@@ -1,4 +1,4 @@
-package com.endava.springrestexample.util.config;
+package com.example.springrestexample.util.config;
 
 
 import com.zaxxer.hikari.HikariConfig;
@@ -6,6 +6,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -19,7 +20,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("com.endava.springrestexample.entity")
+@ComponentScan("com.example.springrestexample")
+@EnableJpaRepositories("com.example.springrestexample.entity")
 public class JpaConfig {
 
     @Value("${dataSource.driverClass}")
@@ -61,7 +63,7 @@ public class JpaConfig {
 
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(configureDataSource());
-        entityManagerFactoryBean.setPackagesToScan("com.endava.internship.entities");
+        entityManagerFactoryBean.setPackagesToScan("com.example.internship.entities");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Properties jpaProperties = new Properties();

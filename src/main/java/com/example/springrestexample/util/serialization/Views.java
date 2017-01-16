@@ -1,4 +1,4 @@
-package com.endava.springrestexample.util.serialization;
+package com.example.springrestexample.util.serialization;
 
 
 public class Views {

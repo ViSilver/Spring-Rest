@@ -1,9 +1,9 @@
-package com.endava.springtestexample.entity.serialization;
+package com.example.springtestexample.entity.serialization;
 
 
-import com.endava.springrestexample.entity.Address;
-import com.endava.springrestexample.entity.Employee;
-import com.endava.springrestexample.util.serialization.Views;
+import com.example.springrestexample.entity.Address;
+import com.example.springrestexample.entity.Employee;
+import com.example.springrestexample.util.serialization.Views;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

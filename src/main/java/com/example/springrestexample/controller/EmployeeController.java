@@ -1,7 +1,7 @@
-package com.endava.springrestexample.controller;
+package com.example.springrestexample.controller;
 
 
-import com.endava.springrestexample.entity.Employee;
+import com.example.springrestexample.entity.Employee;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
