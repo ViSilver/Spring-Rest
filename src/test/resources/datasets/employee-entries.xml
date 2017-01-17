@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <address id="1"
+             city="London"
+             street="Baker Street"
+             number="221 B"/>
+    <address id="2"
+             city="London"
+             street="Baker Street"
+             number="221 A"/>
+    <employee id="1"
+              firstName="John"
+              lastName="Smith"/>
+    <employee id="4"
+              firstName="Sherlock"
+              lastName="Holmes"
+              address_id="1"/>
+</dataset>

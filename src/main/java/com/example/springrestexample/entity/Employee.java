@@ -4,18 +4,15 @@ package com.example.springrestexample.entity;
 import com.example.springrestexample.util.serialization.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 
 @Entity
 public class Employee implements Serializable {
 
-    @Id @GeneratedValue
-    @JsonView(Views.EmployeePrivateView.class)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(Views.EmployeePublicView.class)
     private Integer id;
 
     @JsonView(Views.EmployeePublicView.class)
