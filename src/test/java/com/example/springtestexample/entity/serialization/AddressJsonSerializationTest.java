@@ -16,7 +16,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-
+// Alternatively it can be used @JsonTest annotation
 public class AddressJsonSerializationTest {
 
     @Test

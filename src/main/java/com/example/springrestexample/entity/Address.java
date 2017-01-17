@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class Address implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(Views.AddressPrivateView.class)
+    @JsonView(Views.AddressPublicView.class)
     private Integer id;
 
     @JsonView(Views.AddressPublicView.class)
