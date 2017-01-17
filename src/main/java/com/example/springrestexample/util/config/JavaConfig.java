@@ -7,6 +7,8 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +29,8 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.example.springrestexample")
-@EnableJpaRepositories(basePackages = {"com.example.springrestexample.repository", "com.example.springrestexample.entity"})
+@EnableJpaRepositories(basePackages =
+        {"com.example.springrestexample.repository", "com.example.springrestexample.entity"})
 public class JavaConfig {
 
     @Value("${dataSource.driverClass}")
