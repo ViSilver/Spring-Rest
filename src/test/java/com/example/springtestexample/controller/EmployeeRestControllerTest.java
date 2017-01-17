@@ -1,6 +1,7 @@
 package com.example.springtestexample.controller;
 
 
+import com.example.springrestexample.controller.EmployeeRestController;
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.main.Application;
@@ -12,18 +13,23 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.nio.charset.Charset;
 import java.util.*;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -34,7 +40,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {Application.class, JavaConfig.class})
+@SpringApplicationConfiguration(classes = {JavaConfig.class})
+//@ContextConfiguration
 @WebAppConfiguration
 public class EmployeeRestControllerTest {
 
@@ -89,11 +96,28 @@ public class EmployeeRestControllerTest {
 
     @Test
     public void readSingleEmployee() throws Exception {
-        mockMvc.perform(get("/employee/" + userId).accept(MediaType.APPLICATION_JSON_UTF8))
+//        assertEquals(Optional.ofNullable(userId), 1);
+        mockMvc.perform(get("/employee/" + 1).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id", is(employee.getId())))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.firstName", is(employee.getFirstName())))
                 .andExpect(jsonPath("$.lastName", is(employee.getLastName())));
+    }
+
+    @Test
+    public void dummyGet() throws Exception {
+        Integer id = 1;
+        mockMvc.perform(get("/employee/{id}", id).accept(MediaType.APPLICATION_JSON_UTF8));
+    }
+
+    @Configuration
+    @EnableWebMvc
+    public static class TestConfiguration {
+
+        @Bean
+        public EmployeeRestController employeeRestController() {
+            return new EmployeeRestController();
+        }
     }
 }

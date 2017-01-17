@@ -28,7 +28,7 @@ public class EmployeeRestController {
         return employeeRepository.findById(id);
     }
 
-    @RequestMapping(value = "/employees", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+    @RequestMapping(value = "/employees", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
