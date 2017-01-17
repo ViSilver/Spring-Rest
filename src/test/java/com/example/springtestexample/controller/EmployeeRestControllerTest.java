@@ -111,13 +111,13 @@ public class EmployeeRestControllerTest {
         mockMvc.perform(get("/employee/{id}", id).accept(MediaType.APPLICATION_JSON_UTF8));
     }
 
-    @Configuration
-    @EnableWebMvc
-    public static class TestConfiguration {
-
-        @Bean
-        public EmployeeRestController employeeRestController() {
-            return new EmployeeRestController();
-        }
-    }
+//    @Configuration
+//    @EnableWebMvc
+//    public static class TestConfiguration {
+//
+//        @Bean
+//        public EmployeeRestController employeeRestController() {
+//            return new EmployeeRestController();
+//        }
+//    }
 }
