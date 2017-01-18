@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface AddressRepository extends JpaRepository<Address, Integer> {
 
     Address findById(Integer id);
+
+    Address findByStreet(String street);
 }
