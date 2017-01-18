@@ -1,6 +1,6 @@
 INSERT INTO public.address(
   id, city, "number", street)
-VALUES (1, 'Chisinau', '1', 'Stefan cel Mare');
+VALUES (3, 'Chisinau', '1', 'Stefan cel Mare');
 
 INSERT INTO public.address(
   id, city, "number", street)
@@ -12,6 +12,6 @@ VALUES (1, 'Ion', 'Popa', null);
 
 INSERT INTO public.employee(
   id, firstname, lastname, address_id)
-VALUES (2, 'Alexandru', 'Lapusneanu', 1);
+VALUES (2, 'Alexandru', 'Lapusneanu', 3);
 
 

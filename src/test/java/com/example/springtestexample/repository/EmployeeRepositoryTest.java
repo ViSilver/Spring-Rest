@@ -30,8 +30,6 @@ import static org.junit.Assert.assertNotNull;
 
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextBeforeModesTestExecutionListener.class,
-//        TransactionalTestExecutionListener.class,
-//        DbUnitTestExecutionListener.class,
         TransactionDbUnitTestExecutionListener.class})
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {JavaConfig.class})
