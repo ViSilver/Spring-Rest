@@ -1,6 +1,6 @@
-DELETE FROM employee;
+DROP TABLE employee;
 
-DELETE FROM address;
+DROP TABLE address;
 
 CREATE TABLE public.address
 (
