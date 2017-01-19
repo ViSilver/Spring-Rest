@@ -1,4 +1,4 @@
-package com.example.springrestexample.controller;
+package com.example.springrestexample.controller.rest;
 
 import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.repository.AddressRepository;
@@ -15,7 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/rest/employees")
 public class EmployeeRestController {
 
     @Autowired

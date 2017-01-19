@@ -1,4 +1,4 @@
-package com.example.springrestexample.controller;
+package com.example.springrestexample.controller.rest;
 
 
 import com.example.springrestexample.entity.Address;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/addresses")
+@RequestMapping("/rest/addresses")
 public class AddressRestController {
 
     @Autowired

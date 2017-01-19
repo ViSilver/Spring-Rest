@@ -1,7 +1,7 @@
-package com.example.springtestexample.controller;
+package com.example.springtestexample.controller.rest;
 
 
-import com.example.springrestexample.controller.EmployeeRestController;
+import com.example.springrestexample.controller.rest.EmployeeRestController;
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.repository.AddressRepository;
