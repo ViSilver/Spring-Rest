@@ -11,14 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.example.springrestexample")
-@Import({DataSourceConfig.class, JpaConfig.class, RepositoryConfig.class})
+@Import({DataSourceConfig.class, JpaConfig.class, RepositoryConfig.class, WebMvcConfig.class})
 public class JavaConfig {
 
-    @Bean
-    public MappingJackson2HttpMessageConverter customJackson2HttpMessageConverter() {
-        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
-        HibernateAwareObjectMapper hibernateAwareObjectMapper = new HibernateAwareObjectMapper();
-        jsonConverter.setObjectMapper(hibernateAwareObjectMapper);
-        return jsonConverter;
-    }
 }
