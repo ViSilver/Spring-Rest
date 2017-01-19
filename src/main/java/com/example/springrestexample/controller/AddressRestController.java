@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/addresses")
 public class AddressRestController {
 
     @Autowired
@@ -28,5 +30,17 @@ public class AddressRestController {
     @RequestMapping(value = "/private/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Address getPrivate(@PathVariable Integer id) {
         return addressRepository.findById(id);
+    }
+
+    @JsonView(Views.AddressPublicView.class)
+    @RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Address> getAll() {
+        return addressRepository.findAll();
+    }
+
+    @JsonView(Views.AddressPrivateView.class)
+    @RequestMapping(value = "/private",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Address> getAllPrivate() {
+        return addressRepository.findAll();
     }
 }

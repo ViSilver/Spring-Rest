@@ -48,7 +48,7 @@ public class EmployeeRestController {
         return employeeRepository.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
     ResponseEntity<?> add(@RequestBody Employee input) {
         Employee result = employeeRepository.save(new Employee(input.getFirstName(), input.getLastName()));
 
@@ -56,5 +56,11 @@ public class EmployeeRestController {
                 .path("/{id}").buildAndExpand(result.getId()).toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @JsonView(Views.AllPrivateView.class)
+    @RequestMapping(value = "all-private", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Employee> getAllPrivate() {
+        return employeeRepository.findAll();
     }
 }
