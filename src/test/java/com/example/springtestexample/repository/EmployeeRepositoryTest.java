@@ -1,6 +1,5 @@
 package com.example.springtestexample.repository;
 
-
 import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.repository.EmployeeRepository;
 import com.example.springrestexample.util.config.JavaConfig;
@@ -62,10 +61,6 @@ public class EmployeeRepositoryTest {
 
     @Test
     public void findByIdReturnsEmployee() {
-//        Employee employee = new Employee("John", "Smith");
-//        entityManager.persist(employee);
-//        employeeRepository.save(employee);
-//        assertEquals(java.util.Optional.ofNullable(employee.getId()), 1);
         Employee employee = employeeRepository.findById(1);
         assertNotNull(employee);
         assertEquals("John", employee.getFirstName());
@@ -89,8 +84,6 @@ public class EmployeeRepositoryTest {
     @Ignore
     public void saveEmployeeShouldPersistEntity() {
         Employee employee = new Employee("Mycroft", "Holmes");
-//        employeeRepository.save(employee);
         entityManager.persist(employee);
-//        assertEquals(3, employeeRepository.findAll().size());
     }
 }

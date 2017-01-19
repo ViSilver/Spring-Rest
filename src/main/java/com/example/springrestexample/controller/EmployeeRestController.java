@@ -1,6 +1,5 @@
 package com.example.springrestexample.controller;
 
-
 import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.repository.AddressRepository;
 import com.example.springrestexample.repository.EmployeeRepository;
@@ -16,7 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeRestController {
 
     @Autowired
@@ -44,7 +43,7 @@ public class EmployeeRestController {
     }
 
     @JsonView(Views.EmployeePublicView.class)
-    @RequestMapping(value = "/employees", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }

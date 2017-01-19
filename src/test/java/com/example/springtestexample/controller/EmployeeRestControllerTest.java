@@ -4,7 +4,6 @@ package com.example.springtestexample.controller;
 import com.example.springrestexample.controller.EmployeeRestController;
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.entity.Employee;
-import com.example.springrestexample.main.Application;
 import com.example.springrestexample.repository.AddressRepository;
 import com.example.springrestexample.repository.EmployeeRepository;
 import com.example.springrestexample.util.config.JavaConfig;
@@ -19,7 +18,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -30,7 +28,6 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -42,7 +39,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {JavaConfig.class})
-//@ContextConfiguration
 @WebAppConfiguration
 public class EmployeeRestControllerTest {
 
@@ -98,7 +94,6 @@ public class EmployeeRestControllerTest {
     @Test
     @Ignore
     public void readSingleEmployee() throws Exception {
-//        assertEquals(Optional.ofNullable(userId), 1);
         mockMvc.perform(get("/employee/" + 1).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
