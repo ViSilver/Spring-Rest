@@ -32,7 +32,7 @@
     <!-- DispatcherServlet -->
 
     <servlet>
-        <servlet-name>employee</servlet-name>
+        <servlet-name>jsp</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextClass</param-name>
@@ -42,13 +42,13 @@
         </init-param>
         <init-param>
             <param-name>contextConfiguration</param-name>
-            <param-value>com.example.springrestexample.util.config.WebMvcConfig</param-value>
+            <param-value>com.example.springrestexample.util.config.mvc.WebMvcConfig</param-value>
         </init-param>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>employee</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/*</url-pattern>
     </servlet-mapping>
 
     <!-- HTTP method filter -->
