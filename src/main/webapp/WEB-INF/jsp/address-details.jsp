@@ -1,0 +1,57 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+
+    <title>World - Address Details</title>
+
+    <link rel="stylesheet" href="<c:url value="/css/address.css" />" type="text/css"/>
+</head>
+
+<body>
+
+<c:if test="${msg != null}">
+    <div><span class="message shadow">${fn:escapeXml(msg)}</span></div>
+</c:if>
+
+<h1><a href="<c:url value=" /home"/>">World</a></h1>
+
+<section>
+    <form:form modelAttribute="address" action="${pageContext.request.contextPath}/addresses" method="POST">
+        <button type="submit" name="delete" onclick="return confirm('Delete ${fn:escapeXml(address.city)}?')">
+            Delete
+        </button>
+    </form:form>
+
+    <table class="details silver">
+        <tr>
+            <th colspan="2">Address Details</th>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>${fn:escapeXml(address.city)}</td>
+        </tr>
+        <tr>
+            <td>Street (sq mi)</td>
+            <td>${fn:escapeXml(address.street)}</td>
+        </tr>
+        <tr>
+            <td>Number (sq mi)</td>
+            <td>${fn:escapeXml(address.number)}</td>
+        </tr>
+    </table>
+
+</section>
+
+<a href="<c:url value=" /countries"/>" >
+    &laquo; back
+</a>
+
+</body>
+</html>
