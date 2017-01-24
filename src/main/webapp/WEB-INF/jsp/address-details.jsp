@@ -11,7 +11,7 @@
 
     <title>World - Address Details</title>
 
-    <link rel="stylesheet" href="<c:url value="/css/address.css" />" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value="/css/company.css" />" type="text/css"/>
 </head>
 
 <body>
@@ -49,7 +49,7 @@
 
 </section>
 
-<a href="<c:url value=" /countries"/>" >
+<a href="<c:url value=" /addresses"/>" >
     &laquo; back
 </a>
 

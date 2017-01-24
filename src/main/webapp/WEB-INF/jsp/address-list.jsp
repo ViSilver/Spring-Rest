@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Spring Example</title>
-    <link rel="stylesheet" href="<c:url value=" /css/world.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value=" /css/company.css"/>" type="text/css"/>
 </head>
 
 <body>

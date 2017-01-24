@@ -8,14 +8,14 @@
 
     <title>World</title>
 
-    <link rel="stylesheet" href="<c:url value=" /css/world.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value=" /css/company.css"/>" type="text/css"/>
   </head>
 
   <body>
     <h1>World</h1>
 
     <p>
-        <a href="<c:url value=" countries"/>">Countries</a>
+        <a href="<c:url value=" addresses"/>">Countries</a>
     </p>
 
   </body>

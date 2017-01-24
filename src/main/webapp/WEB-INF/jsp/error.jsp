@@ -7,7 +7,7 @@
 
         <title>Address - Error</title>
 
-        <link rel="stylesheet" href="<c:url value=" /css/address.css"/>" type="text/css">
+        <link rel="stylesheet" href="<c:url value=" /css/company.css"/>" type="text/css">
     </head>
 
     <body>
