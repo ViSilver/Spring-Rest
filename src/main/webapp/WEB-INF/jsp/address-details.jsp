@@ -38,11 +38,11 @@
             <td>${fn:escapeXml(address.city)}</td>
         </tr>
         <tr>
-            <td>Street (sq mi)</td>
+            <td>Street</td>
             <td>${fn:escapeXml(address.street)}</td>
         </tr>
         <tr>
-            <td>Number (sq mi)</td>
+            <td>Number</td>
             <td>${fn:escapeXml(address.number)}</td>
         </tr>
     </table>
