@@ -24,7 +24,7 @@
 
 <section>
     <form:form modelAttribute="address" action="${pageContext.request.contextPath}/addresses" method="POST">
-        <button type="submit" name="delete" onclick="return confirm('Delete ${fn:escapeXml(address.city)}?')">
+        <button type="submit" name="delete" >
             Delete
         </button>
     </form:form>

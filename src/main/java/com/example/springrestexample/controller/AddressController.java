@@ -87,7 +87,7 @@ public class AddressController {
         return "redirect:addresses/" + savedAddress.getId();
     }
 
-    @RequestMapping(params = "delete", method = RequestMethod.DELETE)
+    @RequestMapping(params = "delete", method = RequestMethod.POST)
     public String deleteAddress(@ModelAttribute("address") Address address,
                                 SessionStatus status,
                                 RedirectAttributes redirectAttributes) {
