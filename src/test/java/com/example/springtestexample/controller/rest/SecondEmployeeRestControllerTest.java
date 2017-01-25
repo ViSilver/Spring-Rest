@@ -67,7 +67,7 @@ public class SecondEmployeeRestControllerTest {
 
     @Test
     public void testGetAllSuccess() throws Exception{
-        mockMvc.perform(get("/employee/employees"))
+        mockMvc.perform(get("/rest/employees"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(2)))
