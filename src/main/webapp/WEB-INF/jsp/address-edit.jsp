@@ -21,7 +21,7 @@
             <form:form modelAttribute="address" action="${pageContext.request.contextPath}/addresses" method="POST">
 
                 <c:choose>
-                    <c:when test="${address.newAddress}">
+                    <c:when test="${address.id == null}">
                         <button type="submit" name="create">
                             Create
                         </button>

@@ -20,7 +20,7 @@
 
 <section>
 
-    <a href="<c:url value=" addresses/blank"/>">
+    <a href="<c:url value=" /addresses/new"/>">
         <button>Add New</button>
     </a>
 
@@ -32,7 +32,7 @@
         <c:forEach items="${addresses}" var="address">
             <tr>
                 <td>
-                    <a href="<c:url value='addresses/${address.id}?for-update=true'/>">
+                    <a href="<c:url value='/addresses/${address.id}?for-update=true'/>">
                         <img src="<c:url value=" /images/edit.gif"/>"/>
                     </a>
                 </td>

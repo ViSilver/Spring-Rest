@@ -12,10 +12,10 @@
   </head>
 
   <body>
-    <h1>World</h1>
+    <h1>Company</h1>
 
     <p>
-        <a href="<c:url value=" addresses"/>">Countries</a>
+        <a href="<c:url value=" addresses"/>">Addresses</a>
     </p>
 
   </body>
