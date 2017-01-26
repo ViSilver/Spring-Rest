@@ -23,10 +23,11 @@
 <h1><a href="<c:url value=" /home"/>">Company</a></h1>
 
 <section>
-    <form:form modelAttribute="employee" action="${pageContext.request.contextPath}/addresses" method="POST">
+    <form:form modelAttribute="employeeAddressDto" action="${pageContext.request.contextPath}/employees" method="POST">
         <button type="submit" name="delete" >
             Delete
         </button>
+        <p>${employeeAddressDto.employeeId}</p>
     </form:form>
 
     <table class="details silver">
@@ -35,16 +36,16 @@
         </tr>
         <tr>
             <td>First Name</td>
-            <td>${fn:escapeXml(employee.firstName)}</td>
+            <td>${fn:escapeXml(employeeAddressDto.firstName)}</td>
         </tr>
         <tr>
             <td>Last Name</td>
-            <td>${fn:escapeXml(employee.lastName)}</td>
+            <td>${fn:escapeXml(employeeAddressDto.lastName)}</td>
         </tr>
-        <c:if test="${employee.address != null}">
+        <c:if test="${employeeAddressDto.city != null}">
             <tr>
                 <td>Address</td>
-                <td>${fn:escapeXml(employee.address)}</td>
+                <td>${fn:escapeXml(employeeAddressDto.city)}</td>
             </tr>
         </c:if>
     </table>

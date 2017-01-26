@@ -1,5 +1,6 @@
 package com.example.springrestexample.controller;
 
+import com.example.springrestexample.dto.EmployeeAddressDto;
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.repository.AddressRepository;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/employees")
-@SessionAttributes(types = {Employee.class, Address.class})
+@SessionAttributes(types = {Address.class, Employee.class, EmployeeAddressDto.class})
 public class EmployeeController {
 
     @Autowired
@@ -39,18 +40,19 @@ public class EmployeeController {
                               Model model) {
 
         Employee employee = employeeRepository.findById(id);
-        model.addAttribute(employee);
+        EmployeeAddressDto employeeAddressDto = new EmployeeAddressDto(employee);
+        model.addAttribute(employeeAddressDto);
         return forUpdate ? "employee-edit" : "employee-details";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String getNewEmployee(Model model) {
-        model.addAttribute(new Employee());
+        model.addAttribute(new EmployeeAddressDto());
         return "employee-edit";
     }
 
     @RequestMapping(params = "create", method = RequestMethod.POST)
-    public String createEmployee(@Valid Employee employee,
+    public String createEmployee(@Valid EmployeeAddressDto employeeAddressDto,
                                  BindingResult result,
                                  SessionStatus status,
                                  RedirectAttributes redirectAttributes) {
@@ -59,11 +61,54 @@ public class EmployeeController {
             return "employee-edit";
         }
 
+        Employee employee = new Employee();
+        employee.setFirstName(employeeAddressDto.getFirstName());
+        employee.setLastName(employeeAddressDto.getLastName());
+
+        Address address = new Address();
+        address.setCity(employeeAddressDto.getCity());
+        address.setStreet(employeeAddressDto.getStreet());
+        address.setNumber(employeeAddressDto.getNumber());
+
         Employee savedEmployee = employeeRepository.save(employee);
+        Address savedAddress = addressRepository.save(address);
         status.setComplete();
 
         redirectAttributes.addFlashAttribute("msg",
-                String.format("Employee '%s' added successfully", employee));
+                String.format("Employee '%s' with address '%s' added successfully",
+                        savedEmployee,
+                        savedAddress));
+
+        return "redirect:employees/" + savedEmployee.getId();
+    }
+
+    @RequestMapping(params = "update", method = RequestMethod.POST)
+    public String updateEmployee(@Valid EmployeeAddressDto employeeAddressDto,
+                                 BindingResult result,
+                                 SessionStatus status,
+                                 RedirectAttributes redirectAttributes) {
+
+        if (result.hasErrors()) {
+            return "employee-edit";
+        }
+
+        Employee employee = new Employee();
+        employee.setFirstName(employeeAddressDto.getFirstName());
+        employee.setLastName(employeeAddressDto.getLastName());
+
+        Address address = new Address();
+        address.setCity(employeeAddressDto.getCity());
+        address.setStreet(employeeAddressDto.getStreet());
+        address.setNumber(employeeAddressDto.getNumber());
+
+        Employee savedEmployee = employeeRepository.save(employee);
+        Address savedAddress = addressRepository.save(address);
+        status.setComplete();
+
+        redirectAttributes.addFlashAttribute("msg",
+                String.format("Employee '%s' with address '%s' updated successfully",
+                        savedEmployee,
+                        savedAddress));
 
         return "redirect:employees/" + savedEmployee.getId();
     }
@@ -81,5 +126,22 @@ public class EmployeeController {
     public String getNewAddressForEmployee(Model model) {
         model.addAttribute(new Address());
         return "address-edit";
+    }
+
+    @RequestMapping(params = "delete", method = RequestMethod.POST)
+    public String deleteEmployee(@ModelAttribute("employeeAddressDto") EmployeeAddressDto employeeAddressDto,
+                                 SessionStatus status,
+                                 RedirectAttributes redirectAttributes) {
+
+        Employee employee = employeeRepository.findById(employeeAddressDto.getEmployeeId());
+//        System.out.println(employeeAddressDto.getEmployeeId());
+
+        employeeRepository.delete(employee);
+        status.setComplete();
+
+        redirectAttributes.addFlashAttribute("msg", String.format("Employee '%s' removed successfully",
+                employee));
+
+        return "redirect:employees/";
     }
 }
