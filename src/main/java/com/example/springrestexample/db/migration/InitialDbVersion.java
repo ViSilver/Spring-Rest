@@ -1,10 +1,12 @@
 package com.example.springrestexample.db.migration;
 
 
+import org.flywaydb.core.api.MigrationVersion;
+import org.flywaydb.core.api.migration.MigrationInfoProvider;
 import org.flywaydb.core.api.migration.spring.SpringJdbcMigration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class V1__Base_version implements SpringJdbcMigration {
+public class InitialDbVersion implements SpringJdbcMigration, MigrationInfoProvider {
 
     @Override
     public void migrate(JdbcTemplate jdbcTemplate) throws Exception {
@@ -39,5 +41,15 @@ public class V1__Base_version implements SpringJdbcMigration {
 
         jdbcTemplate.execute("ALTER TABLE public.employee\n" +
                 "  OWNER TO postgres;");
+    }
+
+    @Override
+    public MigrationVersion getVersion() {
+        return MigrationVersion.fromVersion("1");
+    }
+
+    @Override
+    public String getDescription() {
+        return "Moves DB To State One (Initial)";
     }
 }

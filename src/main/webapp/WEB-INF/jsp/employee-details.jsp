@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8"/>
 
-    <title>World - Address Details</title>
+    <title>World - Employee Details</title>
 
     <link rel="stylesheet" href="<c:url value="/css/company.css" />" type="text/css"/>
 </head>
@@ -23,7 +23,7 @@
 <h1><a href="<c:url value=" /home"/>">Company</a></h1>
 
 <section>
-    <form:form modelAttribute="address" action="${pageContext.request.contextPath}/addresses" method="POST">
+    <form:form modelAttribute="employee" action="${pageContext.request.contextPath}/addresses" method="POST">
         <button type="submit" name="delete" >
             Delete
         </button>
@@ -31,25 +31,27 @@
 
     <table class="details silver">
         <tr>
-            <th colspan="2">Address Details</th>
+            <th colspan="2">Employee Details</th>
         </tr>
         <tr>
-            <td>City</td>
-            <td>${fn:escapeXml(address.city)}</td>
+            <td>First Name</td>
+            <td>${fn:escapeXml(employee.firstName)}</td>
         </tr>
         <tr>
-            <td>Street</td>
-            <td>${fn:escapeXml(address.street)}</td>
+            <td>Last Name</td>
+            <td>${fn:escapeXml(employee.lastName)}</td>
         </tr>
-        <tr>
-            <td>Number</td>
-            <td>${fn:escapeXml(address.number)}</td>
-        </tr>
+        <c:if test="${employee.address != null}">
+            <tr>
+                <td>Address</td>
+                <td>${fn:escapeXml(employee.address)}</td>
+            </tr>
+        </c:if>
     </table>
 
 </section>
 
-<a href="<c:url value=" /addresses"/>" >
+<a href="<c:url value="/employees"/>" >
     &laquo; back
 </a>
 

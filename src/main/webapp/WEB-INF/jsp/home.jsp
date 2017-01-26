@@ -15,6 +15,10 @@
     <h1>Company</h1>
 
     <p>
+      <a href="<c:url value=" employees"/>">Employees</a>
+    </p>
+
+    <p>
         <a href="<c:url value=" addresses"/>">Addresses</a>
     </p>
 

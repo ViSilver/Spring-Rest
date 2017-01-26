@@ -64,7 +64,7 @@
 
         </section>
 
-        <a href="<c:url value='/addresses'/>">
+        <a href="<c:url value='${pageContext.request.contextPath}/..'/>">
             &laquo; cancel
         </a>
     </body>
