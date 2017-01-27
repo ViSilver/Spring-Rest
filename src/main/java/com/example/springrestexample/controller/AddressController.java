@@ -2,6 +2,7 @@ package com.example.springrestexample.controller;
 
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.repository.AddressRepository;
+import com.example.springrestexample.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class AddressController {
     @Autowired
     private AddressRepository addressRepository;
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         dataBinder.setAllowedFields("city", "street", "number");
@@ -42,7 +46,10 @@ public class AddressController {
                              Model model) {
 
         Address address = addressRepository.findById(id);
+
         model.addAttribute(address);
+        model.addAttribute("canBeDeleted", employeeRepository.findByAddress(address) == null);
+
         return forUpdate ? "address-edit" : "address-details";
     }
 

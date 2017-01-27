@@ -23,11 +23,13 @@
 <h1><a href="<c:url value=" /home"/>">Company</a></h1>
 
 <section>
-    <form:form modelAttribute="address" action="${pageContext.request.contextPath}/addresses" method="POST">
-        <button type="submit" name="delete" >
-            Delete
-        </button>
-    </form:form>
+    <c:if test="${isForUpdate}">
+        <form:form modelAttribute="address" action="${pageContext.request.contextPath}/addresses" method="POST">
+            <button type="submit" name="delete" >
+                Delete
+            </button>
+        </form:form>
+    </c:if>
 
     <table class="details silver">
         <tr>

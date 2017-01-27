@@ -61,23 +61,14 @@ public class EmployeeController {
             return "employee-edit";
         }
 
-        Employee employee = new Employee();
-        employee.setFirstName(employeeAddressDto.getFirstName());
-        employee.setLastName(employeeAddressDto.getLastName());
+        Employee savedEmployee = parseFromDto(employeeAddressDto, false);
 
-        Address address = new Address();
-        address.setCity(employeeAddressDto.getCity());
-        address.setStreet(employeeAddressDto.getStreet());
-        address.setNumber(employeeAddressDto.getNumber());
-
-        Employee savedEmployee = employeeRepository.save(employee);
-        Address savedAddress = addressRepository.save(address);
         status.setComplete();
 
         redirectAttributes.addFlashAttribute("msg",
                 String.format("Employee '%s' with address '%s' added successfully",
                         savedEmployee,
-                        savedAddress));
+                        savedEmployee.getAddress()));
 
         return "redirect:employees/" + savedEmployee.getId();
     }
@@ -92,25 +83,46 @@ public class EmployeeController {
             return "employee-edit";
         }
 
-        Employee employee = new Employee();
-        employee.setFirstName(employeeAddressDto.getFirstName());
-        employee.setLastName(employeeAddressDto.getLastName());
+        Employee savedEmployee = parseFromDto(employeeAddressDto, true);
 
-        Address address = new Address();
-        address.setCity(employeeAddressDto.getCity());
-        address.setStreet(employeeAddressDto.getStreet());
-        address.setNumber(employeeAddressDto.getNumber());
-
-        Employee savedEmployee = employeeRepository.save(employee);
-        Address savedAddress = addressRepository.save(address);
         status.setComplete();
 
         redirectAttributes.addFlashAttribute("msg",
                 String.format("Employee '%s' with address '%s' updated successfully",
                         savedEmployee,
-                        savedAddress));
+                        savedEmployee.getAddress()));
 
         return "redirect:employees/" + savedEmployee.getId();
+    }
+
+    private Employee parseFromDto(EmployeeAddressDto employeeAddressDto, boolean isForUpdate) {
+
+        Address savedAddress = null;
+        Employee employee = null;
+
+        if (isForUpdate) {
+            employee = employeeRepository.findById(employeeAddressDto.getEmployeeId());
+        } else {
+            employee = new Employee();
+        }
+
+        employee.setFirstName(employeeAddressDto.getFirstName());
+        employee.setLastName(employeeAddressDto.getLastName());
+
+        if (!(employeeAddressDto.getCity().equals("")
+                && employeeAddressDto.getStreet().equals("")
+                && employeeAddressDto.getNumber().equals(""))) {
+
+            Address address = new Address();
+            address.setCity(employeeAddressDto.getCity());
+            address.setStreet(employeeAddressDto.getStreet());
+            address.setNumber(employeeAddressDto.getNumber());
+
+            savedAddress = addressRepository.save(address);
+            employee.setAddress(savedAddress);
+        }
+
+        return employeeRepository.save(employee);
     }
 
     @RequestMapping(value = "/{id}/addresses")
@@ -134,13 +146,18 @@ public class EmployeeController {
                                  RedirectAttributes redirectAttributes) {
 
         Employee employee = employeeRepository.findById(employeeAddressDto.getEmployeeId());
-//        System.out.println(employeeAddressDto.getEmployeeId());
+        Address address = employee.getAddress();
 
         employeeRepository.delete(employee);
+
+        if (address != null) {
+            addressRepository.delete(address);
+        }
+
         status.setComplete();
 
         redirectAttributes.addFlashAttribute("msg", String.format("Employee '%s' removed successfully",
-                employee));
+                employee.toString()));
 
         return "redirect:employees/";
     }

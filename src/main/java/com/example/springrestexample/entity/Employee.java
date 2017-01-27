@@ -67,11 +67,17 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
+        Integer addressId = null;
+
+        if (address != null) {
+            addressId = address.getId();
+        }
+
         return "Employee{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", address=" + address.getId() +
+                ", address=" + addressId +
                 '}';
     }
 }
