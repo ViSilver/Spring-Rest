@@ -41,7 +41,11 @@ public class EmployeeController {
 
         Employee employee = employeeRepository.findById(id);
         EmployeeAddressDto employeeAddressDto = new EmployeeAddressDto(employee);
+        employeeAddressDto.setCity(employee.getAddress().getCity());
+        employeeAddressDto.setStreet(employee.getAddress().getStreet());
+        employeeAddressDto.setNumber(employee.getAddress().getNumber());
         model.addAttribute(employeeAddressDto);
+
         return forUpdate ? "employee-edit" : "employee-details";
     }
 

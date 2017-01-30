@@ -1,6 +1,8 @@
 package com.example.springtestexample.repository;
 
+import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.entity.Employee;
+import com.example.springrestexample.repository.AddressRepository;
 import com.example.springrestexample.repository.EmployeeRepository;
 import com.example.springrestexample.util.config.JavaConfig;
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
@@ -8,6 +10,7 @@ import com.github.springtestdbunit.annotation.*;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -47,6 +50,9 @@ public class EmployeeRepositoryTest {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Mock
+    private AddressRepository addressRepository;
 
     @Test
     @Transactional

@@ -23,7 +23,7 @@
 <h1><a href="<c:url value=" /home"/>">Company</a></h1>
 
 <section>
-    <c:if test="${isForUpdate}">
+    <c:if test="${canBeDeleted}">
         <form:form modelAttribute="address" action="${pageContext.request.contextPath}/addresses" method="POST">
             <button type="submit" name="delete" >
                 Delete
