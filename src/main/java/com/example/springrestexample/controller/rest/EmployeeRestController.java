@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -56,6 +57,12 @@ public class EmployeeRestController {
                 .path("/{id}").buildAndExpand(result.getId()).toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @JsonView(Views.EmployeePrivateView.class)
+    @RequestMapping(value = "private", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Employee> getAllPrivateEmployees() {
+        return employeeRepository.findAll();
     }
 
     @JsonView(Views.AllPrivateView.class)

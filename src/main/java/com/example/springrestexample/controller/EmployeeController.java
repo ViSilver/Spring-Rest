@@ -41,9 +41,13 @@ public class EmployeeController {
 
         Employee employee = employeeRepository.findById(id);
         EmployeeAddressDto employeeAddressDto = new EmployeeAddressDto(employee);
-        employeeAddressDto.setCity(employee.getAddress().getCity());
-        employeeAddressDto.setStreet(employee.getAddress().getStreet());
-        employeeAddressDto.setNumber(employee.getAddress().getNumber());
+
+        if (employee.hasAddress()) {
+            employeeAddressDto.setCity(employee.getAddress().getCity());
+            employeeAddressDto.setStreet(employee.getAddress().getStreet());
+            employeeAddressDto.setNumber(employee.getAddress().getNumber());
+        }
+
         model.addAttribute(employeeAddressDto);
 
         return forUpdate ? "employee-edit" : "employee-details";
@@ -136,12 +140,6 @@ public class EmployeeController {
         Employee employee = employeeRepository.findById(id);
         model.addAttribute(employee.getAddress());
         return "address-list";
-    }
-
-    @RequestMapping(value = "/{id}/addresses/new", method = RequestMethod.GET)
-    public String getNewAddressForEmployee(Model model) {
-        model.addAttribute(new Address());
-        return "address-edit";
     }
 
     @RequestMapping(params = "delete", method = RequestMethod.POST)

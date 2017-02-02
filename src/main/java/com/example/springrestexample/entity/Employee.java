@@ -65,6 +65,10 @@ public class Employee implements Serializable {
         this.lastName = lastName;
     }
 
+    public boolean hasAddress() {
+        return this.address != null;
+    }
+
     @Override
     public String toString() {
         Integer addressId = null;
