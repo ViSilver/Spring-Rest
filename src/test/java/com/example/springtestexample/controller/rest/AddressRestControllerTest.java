@@ -2,6 +2,7 @@ package com.example.springtestexample.controller.rest;
 
 
 import com.example.springrestexample.controller.AddressController;
+import com.example.springrestexample.controller.rest.AddressRestController;
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.repository.AddressRepository;
 import com.example.springrestexample.util.config.JavaConfig;
@@ -11,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -30,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 @SpringBootTest(classes = {JavaConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AddressRestControllerTest {
 
@@ -40,13 +42,13 @@ public class AddressRestControllerTest {
     private AddressRepository addressRepository;
 
     @InjectMocks
-    private AddressController addressController;
+    private AddressRestController addressRestController;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders
-                .standaloneSetup(addressController)
+                .standaloneSetup(addressRestController)
                 .build();
 
         List<Address> addresses = Arrays.asList(
@@ -67,9 +69,15 @@ public class AddressRestControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0]", is(1)))
+                .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[0].city", is("London")));
         verify(addressRepository, times(1)).findAll();
         verifyNoMoreInteractions(addressRepository);
+    }
+
+    @Test
+    public void getAddressByIdSuccess_AddressPublicView() throws Exception {
+        mockMvc.perform(get("/rest/addresses/1"))
+                .andExpect(status().isOk());
     }
 }
