@@ -2,7 +2,9 @@ package com.example.springrestexample.util.config.mvc;
 
 import com.example.springrestexample.controller.ControllerPackage;
 import com.example.springrestexample.util.serialization.HibernateAwareObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -37,9 +39,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public MappingJackson2HttpMessageConverter customJackson2HttpMessageConverter() {
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
-        HibernateAwareObjectMapper hibernateAwareObjectMapper = new HibernateAwareObjectMapper();
-        hibernateAwareObjectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        jsonConverter.setObjectMapper(hibernateAwareObjectMapper);
+
+        ObjectMapper mapper = new HibernateAwareObjectMapper();
+
+        jsonConverter.setObjectMapper(mapper);
         return jsonConverter;
     }
 
