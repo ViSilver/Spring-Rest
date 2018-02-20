@@ -7,6 +7,7 @@ import com.example.springrestexample.repository.EmployeeRepository;
 import com.example.springrestexample.util.config.JavaConfig;
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.*;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,10 +58,10 @@ public class EmployeeRepositoryTest {
     @Test
     @Transactional
     public void findByFirstNameReturnsEmployees() {
-        entityManager.persist(new Employee("John", "Smith"));
-        assertNotNull(employeeRepository.findByFirstName("John"));
-
-        Employee employee = employeeRepository.findByFirstName("John").get(0);
+        List<Employee> employees = employeeRepository.findByFirstName("John");
+        assertNotNull(employees);
+        assertThat(employees.size()).isGreaterThan(0);
+        Employee employee = employees.get(0);
         assertThat(employee.getFirstName()).isEqualTo("John");
         assertThat(employee.getLastName()).isEqualTo("Smith");
     }
@@ -85,9 +86,15 @@ public class EmployeeRepositoryTest {
     }
 
     @Test
-    @Transactional
-    @ExpectedDatabase(EXPECTED_DATASET)
     @Ignore
+    public void testFindByNull() {
+        Employee employee = entityManager.find(Employee.class, null);
+        assertEquals(employee, null);
+    }
+
+    @Test
+    @Ignore
+    @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED, value = EXPECTED_DATASET, table = "employee")
     public void saveEmployeeShouldPersistEntity() {
         Employee employee = new Employee("Mycroft", "Holmes");
         entityManager.persist(employee);
