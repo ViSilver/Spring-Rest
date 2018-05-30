@@ -20,15 +20,16 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import java.util.List;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackageClasses = {ControllerPackage.class})
-@Import(ControllerConfig.class)
+//@Import(ControllerConfig.class)
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
-    @Autowired
+    @Inject
     private RequestMappingHandlerAdapter requestMappingHandlerAdapter;
 
     @PostConstruct
@@ -73,7 +74,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-
-
 
 }
