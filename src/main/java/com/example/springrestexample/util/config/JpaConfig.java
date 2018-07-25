@@ -13,6 +13,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -33,8 +34,12 @@ public class JpaConfig {
     @Value("${hibernate.hbm2ddl.auto}")
     private String hbm2ddlAuto;
 
+    private final DataSource configureDataSource;
+
     @Autowired
-    private DataSource configureDataSource;
+    public JpaConfig(final DataSource configureDataSource) {
+        this.configureDataSource = configureDataSource;
+    }
 
     @Bean @DependsOn("flyway")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {

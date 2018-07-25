@@ -20,11 +20,11 @@
     <div><span class="message shadow">${fn:escapeXml(msg)}</span></div>
 </c:if>
 
-<h1><a href="<c:url value=" /home"/>">Company</a></h1>
+<h1><a href="<c:url value="/home"/>">Company</a></h1>
 
 <section>
 
-    <form:form modelAttribute="employeeAddressDto" action="${pageContext.request.contextPath}/employees" method="POST">
+    <form:form modelAttribute="employeeAddressDto" action="${pageContext.request.contextPath}/employees" method="DELETE">
         <button type="submit" name="delete" >
             Delete
         </button>

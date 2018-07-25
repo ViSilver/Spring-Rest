@@ -142,7 +142,7 @@ public class EmployeeController {
         return "address-list";
     }
 
-    @RequestMapping(params = "delete", method = RequestMethod.POST)
+    @RequestMapping(params = "delete", method = RequestMethod.DELETE)
     public String deleteEmployee(@ModelAttribute("employeeAddressDto") EmployeeAddressDto employeeAddressDto,
                                  SessionStatus status,
                                  RedirectAttributes redirectAttributes) {

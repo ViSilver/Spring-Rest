@@ -1,9 +1,6 @@
-package com.example.springtestexample.repository;
+package com.example.springrestexample.repository;
 
-import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.entity.Employee;
-import com.example.springrestexample.repository.AddressRepository;
-import com.example.springrestexample.repository.EmployeeRepository;
 import com.example.springrestexample.util.config.JavaConfig;
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.*;

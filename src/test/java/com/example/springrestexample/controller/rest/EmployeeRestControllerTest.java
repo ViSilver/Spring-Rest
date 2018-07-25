@@ -1,7 +1,6 @@
-package com.example.springtestexample.controller.rest;
+package com.example.springrestexample.controller.rest;
 
 
-import com.example.springrestexample.controller.rest.EmployeeRestController;
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.repository.AddressRepository;
@@ -13,7 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;

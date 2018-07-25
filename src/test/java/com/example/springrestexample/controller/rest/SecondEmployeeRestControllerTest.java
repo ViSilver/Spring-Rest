@@ -1,7 +1,6 @@
-package com.example.springtestexample.controller.rest;
+package com.example.springrestexample.controller.rest;
 
 
-import com.example.springrestexample.controller.rest.EmployeeRestController;
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.repository.EmployeeRepository;
@@ -16,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.hamcrest.Matchers.*;

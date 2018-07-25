@@ -1,4 +1,4 @@
-package com.example.springtestexample.entity.marshalling;
+package com.example.springrestexample.entity.marshalling;
 
 
 import com.example.springrestexample.entity.Address;

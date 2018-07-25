@@ -1,4 +1,4 @@
-package com.example.springrestexample.util.config;
+package com.example.springrestexample.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
