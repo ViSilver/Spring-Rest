@@ -1,4 +1,4 @@
-package com.example.springtestexample.entity.serialization;
+package com.example.springtestexample.entity.marshalling;
 
 
 import com.example.springrestexample.entity.Address;

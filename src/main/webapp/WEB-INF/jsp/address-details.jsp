@@ -20,7 +20,7 @@
     <div><span class="message shadow">${fn:escapeXml(msg)}</span></div>
 </c:if>
 
-<h1><a href="<c:url value=" /home"/>">Company</a></h1>
+<h1><a href="<c:url value="/home"/>">Company</a></h1>
 
 <section>
     <c:if test="${canBeDeleted}">
@@ -51,7 +51,7 @@
 
 </section>
 
-<a href="<c:url value=" /addresses"/>" >
+<a href="<c:url value="/addresses"/>" >
     &laquo; back
 </a>
 

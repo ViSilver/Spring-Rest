@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <h1><a href="<c:url value=" /home"/>">Company</a></h1>
+        <h1><a href="<c:url value="/home"/>">Company</a></h1>
 
         <section>
 
@@ -64,7 +64,7 @@
 
         </section>
 
-        <a href="<c:url value='${pageContext.request.contextPath}/..'/>">
+        <a href="<c:url value='${pageContext.request.contextPath}/../'/>">
             &laquo; cancel
         </a>
     </body>

@@ -19,11 +19,12 @@ import java.util.List;
 @RequestMapping("/rest/employees")
 public class EmployeeRestController {
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
-    private AddressRepository addressRepository;
+    public EmployeeRestController(final EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     @JsonView(Views.EmployeePublicView.class)
     @RequestMapping(value = "/{id}", produces = "application/json")

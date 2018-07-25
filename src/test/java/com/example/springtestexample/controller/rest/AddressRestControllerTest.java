@@ -4,6 +4,7 @@ import com.example.springrestexample.controller.rest.AddressRestController;
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.repository.AddressRepository;
 import com.example.springrestexample.util.config.JavaConfig;
+import com.example.springrestexample.util.config.mvc.WebMvcConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
-@SpringBootTest(classes = {JavaConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = {WebMvcConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AddressRestControllerTest {
 
     private MockMvc mockMvc;
@@ -43,7 +44,7 @@ public class AddressRestControllerTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+//        MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders
                 .standaloneSetup(addressRestController)
                 .build();

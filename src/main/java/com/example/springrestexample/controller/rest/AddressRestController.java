@@ -17,8 +17,12 @@ import java.util.List;
 @RequestMapping("/rest/addresses")
 public class AddressRestController {
 
+    private final AddressRepository addressRepository;
+
     @Inject
-    private AddressRepository addressRepository;
+    public AddressRestController(final AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
+    }
 
     @JsonView(Views.AddressPublicView.class)
     @RequestMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

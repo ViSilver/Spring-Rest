@@ -105,16 +105,17 @@ public class EmployeeRestControllerTest {
     @Test
     public void dummyGet() throws Exception {
         Integer id = 1;
-        mockMvc.perform(get("/employee/{id}", id).accept(MediaType.APPLICATION_JSON_UTF8));
+        mockMvc.perform(get("/employee/{id}", id)
+                .accept(MediaType.APPLICATION_JSON_UTF8));
     }
 
     @Configuration
     @EnableWebMvc
     public static class TestConfiguration {
 
-        @Bean
-        public EmployeeRestController employeeRestController() {
-            return new EmployeeRestController();
-        }
+//        @Bean
+//        public EmployeeRestController employeeRestController() {
+//            return new EmployeeRestController(null);
+//        }
     }
 }
