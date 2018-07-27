@@ -2,7 +2,8 @@ package com.example.springrestexample.repository.reactive;
 
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.repository.AddressRepository;
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
+import io.reactivex.schedulers.Schedulers;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
@@ -17,14 +18,15 @@ public class RxAddressRepository {
         this.addressRepository = addressRepository;
     }
 
-    public Observable<Address> findById(final Integer id){
-        return Observable.defer(() ->
-                Observable.just(addressRepository.findById(id)));
+    public Flowable<Address> findById(final Integer id){
+        return Flowable.defer(() ->
+                Flowable.just(addressRepository.findById(id)))
+                .subscribeOn(Schedulers.computation());
     }
 
-    public Observable<Address> findByStreet(final String street){
-        return Observable.defer(() ->
-                Observable.just(addressRepository.findByStreet(street)));
+    public Flowable<Address> findByStreet(final String street){
+        return Flowable.defer(() ->
+                Flowable.just(addressRepository.findByStreet(street)));
     }
 
 }

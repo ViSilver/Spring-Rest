@@ -23,7 +23,7 @@
         <postgresql.version>9.4.1212.jre7</postgresql.version>
         <jackson.dataformat.xml.version>2.6.3</jackson.dataformat.xml.version>
         <flyway.version>4.0.3</flyway.version>
-        <rxjava.version>2.0.1</rxjava.version>
+        <rxjava.version>2.1.17</rxjava.version>
         <lombok.version>1.18.0</lombok.version>
     </properties>
 

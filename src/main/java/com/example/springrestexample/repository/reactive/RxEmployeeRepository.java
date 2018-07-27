@@ -3,7 +3,7 @@ package com.example.springrestexample.repository.reactive;
 import com.example.springrestexample.entity.Address;
 import com.example.springrestexample.entity.Employee;
 import com.example.springrestexample.repository.EmployeeRepository;
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
@@ -18,16 +18,17 @@ public class RxEmployeeRepository {
         this.employeeRepository = employeeRepository;
     }
 
-    public Observable<Employee> findById(final Integer id){
-        return Observable.defer(() -> Observable.just(employeeRepository.findById(id)));
+    public Flowable<Employee> findById(final Integer id){
+        return Flowable.defer(() -> Flowable.just(employeeRepository.findById(id)));
     }
 
-    public Observable<Employee> findByFirstName(final String firstName){
-        return Observable.defer(() -> Observable.fromIterable(employeeRepository.findByFirstName(firstName)));
+    public Flowable<Employee> findByFirstName(final String firstName){
+        return Flowable.defer(() ->
+                Flowable.fromIterable(employeeRepository.findByFirstName(firstName)));
     }
 
-    public Observable<Employee> findByAddress(final Address address){
-        return Observable.defer(() -> Observable.just(employeeRepository.findByAddress(address)));
+    public Flowable<Employee> findByAddress(final Address address){
+        return Flowable.defer(() -> Flowable.just(employeeRepository.findByAddress(address)));
     }
 
     public void deleteByFirstName(final String firstName){
